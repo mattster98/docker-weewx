@@ -1,5 +1,5 @@
 FROM alpine:3.17.0
-MAINTAINER Tom Mitchell "tom@tom.org"
+MAINTAINER Matt Smith "matt@mattsmith.net
 
 ENV WEEWX_VERSION=4.10.0
 ENV HOME=/home/weewx
