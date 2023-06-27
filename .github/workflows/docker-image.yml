@@ -3,11 +3,11 @@ name: CI test and publish Docker image
 on:
   push:
     branches:
-      - master
+      - main
       - dev
   pull_request:
     branches:
-      - master
+      - main
       - dev
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
     name: Publish to Docker Hub
     needs: test
     runs-on: ubuntu-latest
-#    if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev') && github.repository_owner == 'mattster98'
+    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev') && github.repository_owner == 'mattster98'
     env:
       DOCKER_IMAGE: mattster98/weewx
       PLATFORMS: linux/amd64,linux/arm64
@@ -59,8 +59,8 @@ jobs:
             ${{ env.DOCKER_IMAGE }}:dev_${{ github.sha }}
             ${{ env.DOCKER_IMAGE }}:latest_dev
 
-      - name: Build, tag and push the master Docker image
-        if: success() && github.ref == 'refs/heads/master'
+      - name: Build, tag and push the main Docker image
+        if: success() && github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v2
         with:
           context: .
