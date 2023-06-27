@@ -18,7 +18,7 @@ RUN apk add --update --no-cache --virtual deps gcc zlib-dev jpeg-dev python3-dev
     && cd /tmp/weewx \
     && python3 ./setup.py build \
     && python3 ./setup.py install --no-prompt \
-    && mkdir -p /var/log/weewx /tmp/weewx /home/weewx/public_html \
+    && mkdir -p /var/log/weewx /tmp/weewx /home/weewx/public_html /home/weewx/conf \
     && rm -rf /tmp/weewx \
     && apk del deps \
     && cat /tmp/*.conf >> /home/weewx/conf/weewx.conf \
